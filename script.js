@@ -1,9 +1,8 @@
-//your code here!
 let orderedList = document.querySelector("#infi-list");
-let listItem = document.querySelectorAll(".list-item");
+// let listItem = document.querySelectorAll(".list-item");
 let loader = document.querySelector("#last-item");
 //creating the observer
-let i = 0;
+let i = 11;
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
@@ -11,14 +10,15 @@ const observer = new IntersectionObserver((entries) => {
       console.log("lets load more items");
       let count = 0;
       while (count < 2) {
-        let currentItem = listItem[i].cloneNode(true);
-        orderedList.appendChild(currentItem);
+        let listItem = document.createElement("li");
+        listItem.textContent = `Item ${i}`;
+        orderedList.appendChild(listItem);
         count++;
         i++;
       }
-      i = i % 10;
       observer.observe(orderedList.lastElementChild);
     }
   });
 });
 observer.observe(loader);
+
